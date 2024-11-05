@@ -41,6 +41,7 @@ def predict_traits(input_text):
     return trait_dict,y_pred_full
 
 if __name__ == "__main__":
+    
     pipeline = joblib.load('my_pipeline.pkl')
     st.title("HVP | Personality Trait Prediction")
     user_input = st.text_input("Enter a text here:")
