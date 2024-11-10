@@ -1,5 +1,4 @@
 venv/
-docs/
 *.zip
 nrc-emotion-lexicon-wordlevel-v0.92.txt
 svs.keras
