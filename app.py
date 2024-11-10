@@ -10,7 +10,7 @@ from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
 from xgboost import XGBRegressor
 from sklearn.preprocessing import MinMaxScaler
 
-dataset = pd.read_excel('combined_hvp_numeric.xlsx')
+dataset = pd.read_excel('./dataset/combined_hvp_numeric.xlsx')
 Traits = dataset.drop(columns=['Message', 'ID'])
 y = Traits.values
 scaler = MinMaxScaler()
@@ -45,7 +45,7 @@ def predict_traits(input_text):
 
 
 if __name__ == "__main__":
-    pipeline = joblib.load('my_pipeline.pkl')
+    pipeline = joblib.load('./model/my_pipeline.pkl')
     st.title("HVP | Personality Trait Prediction")
     user_input = st.text_input("Enter a text here:")
     if user_input:
