@@ -1,0 +1,14 @@
+# nltk
+# spacy
+# tensorflow
+scikit-learn
+openpyxl
+# plotly for streamlit application
+xgboost
+# streamlit
+boto3
+flask
+joblib
+pandas
+# numpy
+# aws-lambda-wsgi for aws lambda

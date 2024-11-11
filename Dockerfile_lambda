@@ -1,0 +1,33 @@
+# Use the AWS Lambda Python 3.12 base image (make sure to use an official AWS Lambda base image)
+FROM public.ecr.aws/lambda/python:3.12
+
+# Set working directory inside the container
+WORKDIR /app
+
+# Install necessary system dependencies (to build packages like TensorFlow, Spacy, etc.)
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libatlas-base-dev \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy your project files into the container
+COPY dataset/combined_hvp_numeric.xlsx /app/dataset/combined_hvp_numeric.xlsx
+COPY codes/lambda_handler.py /app/codes/lambda_handler.py
+COPY model/my_pipeline.pkl /app/model/my_pipeline.pkl
+COPY app.py /app/
+COPY app_flask.py /app/
+COPY requirements.txt .
+
+# Upgrade pip to the latest version
+RUN pip install --upgrade pip
+
+# Install dependencies from requirements.txt (including aws-lambda-wsgi)
+RUN pip install -r requirements.txt
+
+# Expose port for Flask
+EXPOSE 5000
+
+# Set the Lambda entry point (the handler)
+CMD ["lambda_handler.lambda_handler"]
+    
