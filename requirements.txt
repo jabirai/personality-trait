@@ -12,3 +12,4 @@ joblib
 pandas
 # numpy
 # aws-lambda-wsgi for aws lambda
+gunicorn

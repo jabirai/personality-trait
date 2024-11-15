@@ -22,12 +22,12 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 
 # Install dependencies from requirements.txt
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose port for Streamlit
 # EXPOSE 8501
 EXPOSE 5000
 
-# Run Streamlit app
 # CMD ["streamlit", "run", "app.py"]
-CMD ["python", "app_flask.py"]
+# CMD ["python", "app_flask.py"]
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "app_flask:app"]
