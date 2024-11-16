@@ -22,11 +22,15 @@ The main branch is using streamlit to run the application whereas deploy branch 
    ./venv/scripts/activate
    ```
 
-- Install the required dependencies:
+- Install the required dependencies for streamlit app:
    ```bash
    pip install -r requirements.txt
    ```
 
+- Install the required dependencies for flask app:
+   ```bash
+   pip install -r requirements_for_flask.txt
+   ```
 
 ### Running the Application
 

@@ -1,14 +1,12 @@
 nltk
 spacy
-# pandas
 tensorflow
-# scikit-learn
+scikit-learn
 openpyxl
 plotly
-# xgboost
+xgboost
 streamlit
 boto3
 pandas
-scikit-learn
-xgboost
 joblib
+# pandas
