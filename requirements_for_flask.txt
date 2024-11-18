@@ -6,10 +6,11 @@ openpyxl
 # plotly for streamlit application
 xgboost
 # streamlit
-boto3
+# boto3
 flask
 joblib
 pandas
 # numpy
 # aws-lambda-wsgi for aws lambda
 gunicorn
+pyarmor

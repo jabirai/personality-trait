@@ -6,7 +6,7 @@ openpyxl
 plotly
 xgboost
 streamlit
-boto3
+# boto3
 pandas
 joblib
 # pandas
