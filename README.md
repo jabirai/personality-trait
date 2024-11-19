@@ -1,5 +1,3 @@
----
-
 # Project Overview
 
 This repository contains the code and resources for **Personality Trait Analysis** using the **HVP**, **SVS**, and **Ocean** models. It includes instructions for running the application using either **Lambda** or **Docker containers**. 
