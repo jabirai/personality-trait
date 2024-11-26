@@ -121,16 +121,16 @@ def run_streamlit_app():
             line=dict(color='yellow', width=2),  # Line color and width
             marker=dict(color='yellow', size=8)  # Marker color and size
         ))
-
-        fig.add_trace(go.Scatter(
-            x=list(trait_names),  # X-axis represents the trait names
-            # Y-axis represents the predicted trait scores, scaled back
-            y=list(svs_original_scores[str(user_id)].values()),
-            mode='lines+markers',  # Display as both line and markers
-            name='Actual',
-            line=dict(color='grey', width=2),  # Line color and width
-            marker=dict(color='grey', size=8)  # Marker color and size
-        ))
+        if model_name == 'svs':
+            fig.add_trace(go.Scatter(
+                x=list(trait_names),  # X-axis represents the trait names
+                # Y-axis represents the predicted trait scores, scaled back
+                y=list(svs_original_scores[str(user_id)].values()),
+                mode='lines+markers',  # Display as both line and markers
+                name='Actual',
+                line=dict(color='grey', width=2),  # Line color and width
+                marker=dict(color='grey', size=8)  # Marker color and size
+            ))
 
         # Display the Plotly chart in the Streamlit app
         st.plotly_chart(fig)
@@ -138,8 +138,9 @@ def run_streamlit_app():
         # Display the predicted personality traits in the app
         st.write("Predicted Traits for {} Model:\n".format(
             model_name.upper()), trait_dict)
-        st.write("Actual Traits for {} Model:\n".format(
-            model_name.upper()), svs_original_scores[str(user_id)])
+        if model_name == 'svs':
+            st.write("Actual Traits for {} Model:\n".format(
+                model_name.upper()), svs_original_scores[str(user_id)])
 
 
 # Run the Streamlit app
