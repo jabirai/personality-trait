@@ -5,6 +5,7 @@ import joblib
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import MinMaxScaler
 from openpyxl import load_workbook
+import json
 import os
 
 app = Flask(__name__)
@@ -62,6 +63,7 @@ def predict():
     data = request.get_json()
     input_text = data['text']  # Ensure the client sends 'text' as input
     model_name = data.get('model', 'hvp')  # Default to 'hvp' if no model is specified
+    user_id = data.get('id')
     
     # Load the model and dataset dynamically based on the model_name
     pipeline, traits, trait_names, n_components = load_model_and_data(model_name)
@@ -91,6 +93,8 @@ def predict():
     trait_dict = dict(zip(trait_names, [round(trait, 4) for trait in y_pred_full_scaled]))
 
     # Return the prediction as a JSON response
+    if model_name == 'svs':
+        return jsonify({'predictions': trait_dict,'actual':svs_original_scores[str(user_id)] if svs_original_scores[str(user_id)] else "Previous record not found."})
     return jsonify({'predictions': trait_dict})
 
 # Home route (basic check)
@@ -100,4 +104,8 @@ def home():
 
 # Run the Flask app
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    with open(os.path.join(working_dir, 'dataset', 'original_svs_scores.json'), 'r') as file:
+        svs_original_scores = json.load(file)
+        file.close()
+    app.run(host='0.0.0.0', port=3000,debug=True)
+    
