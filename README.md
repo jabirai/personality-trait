@@ -1,7 +1,3 @@
-Certainly! Below is an updated version of your README, including the information about the new files (`svs_pipeline.pkl`, `hvp_pipeline.pkl`, and dataset files used), as well as the details on how to run both the Streamlit and Flask applications.
-
----
-
 # Project Overview
 
 This repository contains the code and resources for **Personality Trait Analysis** using the **HVP**, **SVS**, and **Ocean** models. It includes instructions for running the application using either **Lambda** or **Docker containers**. 
