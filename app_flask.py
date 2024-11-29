@@ -4,7 +4,7 @@ import numpy as np
 import joblib
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import MinMaxScaler
-from openpyxl import load_workbook
+import utils.utility as utls
 import json
 import os
 
@@ -24,6 +24,11 @@ models = {
         'model_path': os.path.join(working_dir, 'model', 'svs_pipeline.pkl'),
         'dataset_path': os.path.join(working_dir, 'dataset', 'combined_svs.xlsx'),
         'n_components': 14
+    }
+    ,'ocean': {
+        'model_path': os.path.join(working_dir, 'model', 'ocean_pipeline.pkl'),
+        'dataset_path': os.path.join(working_dir, 'dataset', 'ocean_prepared_dataset.xlsx'),
+        'n_components': 3
     }
 }
 
@@ -91,10 +96,12 @@ def predict():
 
     # Create a dictionary of predicted trait values
     trait_dict = dict(zip(trait_names, [round(trait, 4) for trait in y_pred_full_scaled]))
-
+    
     # Return the prediction as a JSON response
     if model_name == 'svs':
         return jsonify({'predictions': trait_dict,'actual':svs_original_scores[str(user_id)] if svs_original_scores[str(user_id)] else "Previous record not found."})
+    elif model_name == 'ocean':
+        return jsonify({'predictions': utls.scale_to_range(trait_dict)})
     return jsonify({'predictions': trait_dict})
 
 # Home route (basic check)
