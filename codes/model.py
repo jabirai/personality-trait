@@ -6,8 +6,9 @@ from numpy import asarray
 
 os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION"] = "python"
 
-X = pd.read_excel("emotions_df.xlsx")
-y = pd.read_excel("ocean_df.xlsx",sheet_name='ocean')
+X = pd.read_excel("../dataset/emotions_df.xlsx")
+# y = pd.read_excel("../dataset/ocean_df.xlsx",sheet_name='ocean')
+y = pd.read_excel("../dataset/ocean_df.xlsx")
 
 from numpy import mean
 from numpy import std
@@ -41,4 +42,4 @@ outputs = []
 for i, row in X.iterrows():
     output = model.predict(asarray([list(row)]))
     outputs.append(output[0])
-pd.DataFrame(outputs, columns=y.columns).to_excel("output.xlsx", index=False)
+pd.DataFrame(outputs, columns=y.columns).to_excel("../dataset/output.xlsx", index=False)
