@@ -95,7 +95,8 @@ The Flask app (`app_flask.py`) exposes an API endpoint (`/predict`) that accepts
   curl -X POST -H "Content-Type: application/json" -d '{"text": "Some input text", "model": "hvp"}' http://localhost:5000/predict
   ```
   This will return the predicted traits for the **HVP** model. If no model is specified, it defaults to `hvp`.
-
+  Update:
+    - we have added another variable as user_id that tells us the difference between actual and predicted score. This is only done for svs model.
 ---
 
 ## Troubleshooting
