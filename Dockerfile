@@ -12,11 +12,19 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy all the necessary files into the container
+# Data files
 COPY dataset/combined_hvp_numeric.xlsx /app/dataset/combined_hvp_numeric.xlsx
-COPY model/hvp_pipeline.pkl /app/model/hvp_pipeline.pkl
 COPY dataset/combined_svs.xlsx /app/dataset/combined_svs.xlsx
+COPY dataset/ocean_prepared_dataset.xlsx /app/dataset/ocean_prepared_dataset.xlsx
+
+# model files
 COPY model/svs_pipeline.pkl /app/model/svs_pipeline.pkl
+COPY model/hvp_pipeline.pkl /app/model/hvp_pipeline.pkl
+COPY model/ocean_pipeline.pkl /app/model/ocean_pipeline.pkl
+
+
 COPY app_flask.py /app/
+COPY utils /app/utils/
 COPY requirements_for_flask.txt /app/
 
 # Stage 2: Build the final image for runtime
