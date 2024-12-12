@@ -111,8 +111,8 @@ def home():
 
 # Run the Flask app
 if __name__ == '__main__':
-    with open(os.path.join(working_dir, 'dataset', 'original_svs_scores.json'), 'r') as file:
-        svs_original_scores = json.load(file)
-        file.close()
+    # with open(os.path.join(working_dir, 'dataset', 'original_svs_scores.json'), 'r') as file:
+    #     svs_original_scores = json.load(file)
+    #     file.close()
     app.run(host='0.0.0.0', port=3000,debug=True)
     
