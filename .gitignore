@@ -6,3 +6,4 @@ svs.keras
 CEO_sample_transcripts/*
 Archive/*
 .devcontainer/*
+prediction_requests_sample/*

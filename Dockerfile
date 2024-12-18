@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
 COPY dataset/combined_hvp_numeric.xlsx /app/dataset/combined_hvp_numeric.xlsx
 COPY dataset/combined_svs.xlsx /app/dataset/combined_svs.xlsx
 COPY dataset/ocean_prepared_dataset.xlsx /app/dataset/ocean_prepared_dataset.xlsx
+COPY dataset/original_svs_scores.json /app/dataset/original_svs_scores.json
 
 # model files
 COPY model/svs_pipeline.pkl /app/model/svs_pipeline.pkl

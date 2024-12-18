@@ -98,9 +98,9 @@ def predict():
     trait_dict = dict(zip(trait_names, [round(trait, 4) for trait in y_pred_full_scaled]))
     
     # Return the prediction as a JSON response
-    if model_name == 'svs':
-        return jsonify({'predictions': trait_dict,'actual':svs_original_scores[str(user_id)] if svs_original_scores[str(user_id)] else "Previous record not found."})
-    elif model_name == 'ocean':
+    # if model_name == 'svs':
+    #     return jsonify({'predictions': trait_dict,'actual':svs_original_scores[str(user_id)] if svs_original_scores[str(user_id)] else "Previous record not found."})
+    if model_name == 'ocean':
         return jsonify({'predictions': utls.scale_to_range(trait_dict)})
     return jsonify({'predictions': trait_dict})
 
@@ -111,7 +111,7 @@ def home():
 
 # Run the Flask app
 if __name__ == '__main__':
-    with open(os.path.join(working_dir, 'dataset', 'original_svs_scores.json'), 'r') as file:
+    with open(os.path.join(working_dir, 'dataset', '../dataset/original_svs_scores.json'), 'r') as file:
         svs_original_scores = json.load(file)
         file.close()
     app.run(host='0.0.0.0', port=5000,debug=True)
